@@ -1,25 +1,17 @@
 package com.desafio.neto.desafioandroid.models;
 
-import java.util.List;
-
 public class City {
-    private int id;
+    private long id;
     private String name;
-    private java.util.List<Coord> coord;
+    private Coord coord;
     private String country;
+    private long population;
 
-    public City(int id, String name, String country, List<Coord> coord) {
-        this.id = id;
-        this.name = name;
-        this.country = country;
-        this.coord = coord;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -31,6 +23,14 @@ public class City {
         this.name = name;
     }
 
+    public Coord getCoord() {
+        return coord;
+    }
+
+    public void setCoord(Coord coord) {
+        this.coord = coord;
+    }
+
     public String getCountry() {
         return country;
     }
@@ -39,11 +39,11 @@ public class City {
         this.country = country;
     }
 
-    public List<Coord> getCoord() {
-        return coord;
+    public long getPopulation() {
+        return population;
     }
 
-    public void setCoord(List<Coord> coord) {
-        this.coord = coord;
+    public void setPopulation(long population) {
+        this.population = population;
     }
 }

@@ -13,10 +13,10 @@ import static org.junit.Assert.*;
 
 public class UnitTest {
     @Test
-    public void addition_isCorrect() throws Exception {
+    public void openWater_is_play() throws Exception {
         OpenWaterMap openWaterMap = new OpenWaterMap();
-        openWaterMap.getWeekTime(new Callback<TimeWeek>() {
-
+        String city = "JoinVille";
+        openWaterMap.getWeekTime(city, new Callback<TimeWeek>() {
             @Override
             public void success(TimeWeek timeWeek, Response response) {
                 boolean test = false;

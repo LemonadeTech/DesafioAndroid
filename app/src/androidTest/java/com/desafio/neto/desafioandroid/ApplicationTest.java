@@ -2,9 +2,7 @@ package com.desafio.neto.desafioandroid;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
-import android.util.Log;
 
-import com.desafio.neto.desafioandroid.models.ListDetail;
 import com.desafio.neto.desafioandroid.models.TimeWeek;
 import com.desafio.neto.desafioandroid.openWater.OpenWaterMap;
 

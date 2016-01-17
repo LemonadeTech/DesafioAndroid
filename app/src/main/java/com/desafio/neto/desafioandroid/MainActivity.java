@@ -1,4 +1,4 @@
-package com.desafio.neto.desafioandroid.activities;
+package com.desafio.neto.desafioandroid;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -14,10 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
-
-import com.desafio.neto.desafioandroid.R;
-import com.desafio.neto.desafioandroid.fragments.Overview;
-import com.desafio.neto.desafioandroid.fragments.Overview_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -48,9 +44,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     void init() {
         setSupportActionBar(toolbar);
 
-        Overview frag= (Overview) getSupportFragmentManager().findFragmentByTag("home");
+        OverviewFragment frag= (OverviewFragment) getSupportFragmentManager().findFragmentByTag("home");
         if (frag == null) {
-            frag = Overview_.builder().build();
+            frag = OverviewFragment_.builder().build();
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment, frag, "home");
@@ -107,27 +103,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Overview frag= (Overview) getSupportFragmentManager().findFragmentByTag("home");
+            OverviewFragment frag = (OverviewFragment) getSupportFragmentManager().findFragmentByTag("home");
             if (frag == null) {
-                frag = Overview_.builder().build();
+                frag = OverviewFragment_.builder().build();
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment, frag, "home");
                 ft.commit();
             }
         } else if (id == R.id.nav_previsao) {
-            Overview frag= (Overview) getSupportFragmentManager().findFragmentByTag("home");
+            DetailFragment frag = (DetailFragment) getSupportFragmentManager().findFragmentByTag("detail");
             if (frag == null) {
-                frag = Overview_.builder().build();
+                frag = DetailFragment_.builder().build();
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment, frag, "home");
+                        .replace(R.id.fragment, frag, "detail");
                 ft.commit();
             }
         } else if (id == R.id.nav_conf) {
-            Overview frag= (Overview) getSupportFragmentManager().findFragmentByTag("home");
+            OverviewFragment frag= (OverviewFragment) getSupportFragmentManager().findFragmentByTag("home");
             if (frag == null) {
-                frag = Overview_.builder().build();
+                frag = OverviewFragment_.builder().build();
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment, frag, "home");

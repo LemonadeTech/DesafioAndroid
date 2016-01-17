@@ -1,67 +1,59 @@
 package com.desafio.neto.desafioandroid.models;
 
 public class Temp {
-    private float day;
-    private float min;
-    private float max;
-    private float night;
-    private float even;
-    private float morn;
 
-    public Temp(float day, float min, float max, float night, float even, float morn) {
-        this.day = day;
-        this.min = min;
-        this.max = max;
-        this.night = night;
-        this.even = even;
-        this.morn = morn;
-    }
+    private double day;
+    private double min;
+    private double max;
+    private double night;
+    private double eve;
+    private double morn;
 
-    public float getDay() {
+    public double getDay() {
         return day;
     }
 
-    public void setDay(float day) {
+    public void setDay(double day) {
         this.day = day;
     }
 
-    public float getMin() {
+    public double getMin() {
         return min;
     }
 
-    public void setMin(float min) {
+    public void setMin(double min) {
         this.min = min;
     }
 
-    public float getMax() {
+    public double getMax() {
         return max;
     }
 
-    public void setMax(float max) {
+    public void setMax(double max) {
         this.max = max;
     }
 
-    public float getNight() {
+    public double getNight() {
         return night;
     }
 
-    public void setNight(float night) {
+    public void setNight(double night) {
         this.night = night;
     }
 
-    public float getEven() {
-        return even;
+    public double getEve() {
+        return eve;
     }
 
-    public void setEven(float even) {
-        this.even = even;
+    public void setEve(double eve) {
+        this.eve = eve;
     }
 
-    public float getMorn() {
+    public double getMorn() {
         return morn;
     }
 
-    public void setMorn(float morn) {
+    public void setMorn(double morn) {
         this.morn = morn;
     }
 }

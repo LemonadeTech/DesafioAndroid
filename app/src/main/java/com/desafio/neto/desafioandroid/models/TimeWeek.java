@@ -1,19 +1,13 @@
 package com.desafio.neto.desafioandroid.models;
 
+import java.util.ArrayList;
+
 public class TimeWeek {
     private City city;
-    private int cod;
-    private String message;
-    private int cnt;
-    private java.util.List<List> list;
-
-    public TimeWeek(City city, int cod, String message, int cnt, java.util.List<List> list) {
-        this.city = city;
-        this.cod = cod;
-        this.message = message;
-        this.cnt = cnt;
-        this.list = list;
-    }
+    private String cod;
+    private double message;
+    private long cnt;
+    private java.util.List<List> list = new ArrayList<List>();
 
     public City getCity() {
         return city;
@@ -23,27 +17,27 @@ public class TimeWeek {
         this.city = city;
     }
 
-    public int getCod() {
+    public String getCod() {
         return cod;
     }
 
-    public void setCod(int cod) {
+    public void setCod(String cod) {
         this.cod = cod;
     }
 
-    public String getMessage() {
+    public double getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(double message) {
         this.message = message;
     }
 
-    public int getCnt() {
+    public long getCnt() {
         return cnt;
     }
 
-    public void setCnt(int cnt) {
+    public void setCnt(long cnt) {
         this.cnt = cnt;
     }
 

@@ -1,15 +1,18 @@
 package com.desafio.neto.desafioandroid.models;
 
 public class Coord {
-    private Double lon;
-    private Double lat;
+    private double lon;
+    private double lat;
 
-    public Coord(Double lon, Double lat) {
+    public void setLon(double lon) {
         this.lon = lon;
+    }
+
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public Double getLon() {
+    public double getLon() {
         return lon;
     }
 
@@ -17,7 +20,7 @@ public class Coord {
         this.lon = lon;
     }
 
-    public Double getLat() {
+    public double getLat() {
         return lat;
     }
 
