@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">DesafioAndroid</string>
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="pref_unitTitle">Unit system</string>
+    <string name="pref_unitSummary">Unit system to display weather data</string>
+    <string name="pref_unitDefaultValue">Metric</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>

@@ -1,7 +1,10 @@
 package org.thecoreme.rodrigo.desafioandroid;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -40,61 +43,17 @@ public class MainActivity extends AppCompatActivity {
 
         ///
         try {
-            //        WeatherClient.ClientBuilder builder = new WeatherClient.ClientBuilder();
-            //        WeatherConfig config = new WeatherConfig();
-            // using OpenWeatherMap and a synchronous http client
-            //        WeatherClient client = builder.attach(getActivity())
-            //                .provider(new OpenweathermapProviderType())
-            //                .httpClient(com.survivingwithandroid.weather.lib.StandardHttpClient.class)
-            //                .config(config)
-            //WeatherDefaultClient.class
-            WeatherConfig config = new WeatherConfig();
-            config.ApiKey = "2ffdd0916ecc926d15b723006c99fd42";
-            WeatherClient client = (new WeatherClient.ClientBuilder()).attach(this)
-                    .httpClient(com.survivingwithandroid.weather.lib.client.okhttp.WeatherDefaultClient.class)
-                    .provider(new OpenweathermapProviderType())
-                    .config(config)
-                    .build();
+            WeatherClient client = WeatherContext.getInstance().getClient(this);
 
-            // use it on the settings activity
-//            config.unitSystem = WeatherConfig.UNIT_SYSTEM.M;
-//            config.lang = "en";
-//            config.maxResult = 5;
-//            config.numDays = 6;
-//            client.updateWeatherConfig(config);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            String cityId = sharedPref.getString("cityId", "3463237");
+            String cityName = sharedPref.getString("cityName", "Florianopolis");
+            Log.d("WLBB", "__");
+            Log.d("WLBB", cityId);
+            Log.d("WLBB", cityName);
+            Log.d("WLBB", "__");
 
-            client.searchCity("Florianopolis", new WeatherClient.CityEventListener() {
-                @Override
-                public void onCityListRetrieved(List<City> cities) {
-                    Log.d("WLAA", "--1");
-                    Log.d("WLAA", Integer.toString(cities.size()));
-                    // The data is ready
-
-                    for (int i = 0; i < cities.size(); i++) {
-                        Log.d("WLAA", cities.get(i).getName());
-                        Log.d("WLAA", cities.get(i).getCountry());
-                        Log.d("WLAA", cities.get(i).getId());
-                    }
-                    Log.d("WLAA", "--2");
-                }
-
-                @Override
-                public void onWeatherError(WeatherLibException e) {
-                    // Error on geting data
-                    Log.d("WL", ">> weather error error");
-                    e.printStackTrace();
-                }
-
-                @Override
-                public void onConnectionError(Throwable throwable) {
-                    // Connection error
-                    Log.d("WL", ">> Connection error");
-                    throwable.printStackTrace();
-                }
-            });
-
-
-            client.getCurrentCondition(new WeatherRequest("3463237"), new WeatherClient.WeatherEventListener() {
+            client.getCurrentCondition(new WeatherRequest(cityId), new WeatherClient.WeatherEventListener() {
                 @Override
                 public void onWeatherRetrieved(CurrentWeather currentWeather) {
                     float currentTemp = currentWeather.weather.temperature.getTemp();
@@ -122,35 +81,23 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+
             return true;
         }
 

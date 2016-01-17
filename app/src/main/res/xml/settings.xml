@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="pref_City"
+        android:title="City"
+        android:summary="City name">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.thecoreme.rodrigo.desafioandroid"
+            android:targetClass="org.thecoreme.rodrigo.desafioandroid.SearchLocationActivity" />
+    </Preference>
+    <ListPreference
+        android:key="pref_unit"
+        android:title="@string/pref_unitTitle"
+        android:summary="@string/pref_unitSummary"
+        android:entries="@array/pref_unitEntries"
+        android:entryValues="@array/pref_unitEntryValues"
+        android:defaultValue="@string/pref_unitDefaultValue" />
+</PreferenceScreen>
