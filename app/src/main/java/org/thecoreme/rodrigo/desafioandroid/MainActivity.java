@@ -17,9 +17,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.survivingwithandroid.weather.lib.WeatherClient;
 import com.survivingwithandroid.weather.lib.WeatherConfig;
 import com.survivingwithandroid.weather.lib.exception.WeatherLibException;
+import com.survivingwithandroid.weather.lib.model.City;
 import com.survivingwithandroid.weather.lib.model.CurrentWeather;
+//import com.survivingwithandroid.weather.lib.provider.wunderground.WeatherUndergroundProviderType;
 import com.survivingwithandroid.weather.lib.provider.openweathermap.OpenweathermapProviderType;
 import com.survivingwithandroid.weather.lib.request.WeatherRequest;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,11 +47,13 @@ public class MainActivity extends AppCompatActivity {
             //                .provider(new OpenweathermapProviderType())
             //                .httpClient(com.survivingwithandroid.weather.lib.StandardHttpClient.class)
             //                .config(config)
-            //
+            //WeatherDefaultClient.class
+            WeatherConfig config = new WeatherConfig();
+            config.ApiKey = "2ffdd0916ecc926d15b723006c99fd42";
             WeatherClient client = (new WeatherClient.ClientBuilder()).attach(this)
-                    .httpClient(WeatherDefaultClient.class)
+                    .httpClient(com.survivingwithandroid.weather.lib.client.okhttp.WeatherDefaultClient.class)
                     .provider(new OpenweathermapProviderType())
-                    .config(new WeatherConfig())
+                    .config(config)
                     .build();
 
             // use it on the settings activity
@@ -57,7 +63,38 @@ public class MainActivity extends AppCompatActivity {
 //            config.numDays = 6;
 //            client.updateWeatherConfig(config);
 
-            client.getCurrentCondition(new WeatherRequest("2988507"), new WeatherClient.WeatherEventListener() {
+            client.searchCity("Florianopolis", new WeatherClient.CityEventListener() {
+                @Override
+                public void onCityListRetrieved(List<City> cities) {
+                    Log.d("WLAA", "--1");
+                    Log.d("WLAA", Integer.toString(cities.size()));
+                    // The data is ready
+
+                    for (int i = 0; i < cities.size(); i++) {
+                        Log.d("WLAA", cities.get(i).getName());
+                        Log.d("WLAA", cities.get(i).getCountry());
+                        Log.d("WLAA", cities.get(i).getId());
+                    }
+                    Log.d("WLAA", "--2");
+                }
+
+                @Override
+                public void onWeatherError(WeatherLibException e) {
+                    // Error on geting data
+                    Log.d("WL", ">> weather error error");
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onConnectionError(Throwable throwable) {
+                    // Connection error
+                    Log.d("WL", ">> Connection error");
+                    throwable.printStackTrace();
+                }
+            });
+
+
+            client.getCurrentCondition(new WeatherRequest("3463237"), new WeatherClient.WeatherEventListener() {
                 @Override
                 public void onWeatherRetrieved(CurrentWeather currentWeather) {
                     float currentTemp = currentWeather.weather.temperature.getTemp();
@@ -72,11 +109,12 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onConnectionError(Throwable throwable) {
-                    Log.d("WL", "Connection error");
+                    Log.d("WL", ">> Connection error");
                     throwable.printStackTrace();
                 }
             });
         } catch (Throwable t) {
+            Log.d("FUCK", "SOMETHING WRONG");
             t.printStackTrace();
         }
         ///
