@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="city">
+        <item>Joinville</item>
+        <item>Criciúma</item>
+        <item>Florianópolis</item>
+        <item>Blumenau</item>
+        <item>Bom Retiro</item>
+        <item>Bombinhas</item>
+        <item>Chapecó</item>
+    </string-array>
+
+</resources>

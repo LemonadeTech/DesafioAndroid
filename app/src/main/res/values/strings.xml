@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Desafio Android</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="email">neto@itslemonade.com</string>
+
+    <string name="home">Home</string>
+    <string name="previsao_dia">Previsão do dia</string>
+    <string name="configuracao">Configuração</string>
+    <string name="previsao_do_tempo">Previsão do tempo</string>
+
+    <string name="config">Configuração</string>
+    <string name="digite">Informe a sua cidade</string>
+
+    <string name="salvar">Salvar</string>
+    <string name="sucesso">Cidade salva com sucesso.</string>
+    <string name="erro">Cidade informada não encontrada.</string>
+
+    <string name="temeperatura_minima">Temperatura mínima</string>
+    <string name="temeperatura_maxima">Temperatura máxima</string>
+
+
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="humidade">Humidade</string>
+    <string name="pressao">Pressão</string>
+    <string name="velocidade_vento">Velocidade do vento</string>
+
+</resources>
