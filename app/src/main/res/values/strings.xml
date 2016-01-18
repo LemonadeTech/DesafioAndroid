@@ -1,0 +1,26 @@
+<resources>
+
+    <string name="app_name">LemTech Weather</string>
+
+    <string name="menu_overview">Overview</string>
+    <string name="menu_configs">Configs</string>
+
+    <string name="server_error">Server error.</string>
+    <string name="error_on_server_response">Error on server response.</string>
+    <string name="connection_error">Connection error.</string>
+
+
+    <string name="wind">Wind:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="clouds">Clouds:</string>
+
+    <string name="overview_unpreviewed">No previews. :/</string>
+    <string name="preview_unavailable">Preview unavailable</string>
+    <string name="you_must_select_a_city_in_configs">You must select a city in configs</string>
+
+    <string name="city">City:</string>
+    <string name="add">Add</string>
+    <string name="city_added">Added Cities:</string>
+    <string name="long_click_to_remove">(Long click to remove)</string>
+
+</resources>

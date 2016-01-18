@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<br.com.rr.deslemtech.archi.view.component.NoClickLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white_menu"
+    >
+
+        <RelativeLayout
+            android:id="@+id/menu_item_overview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_height"
+            android:background="@drawable/button_item_menu_selector"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/menu_textview_item_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/menu_view_item_linesep"
+                android:text="@string/menu_overview"
+                android:textSize="@dimen/menu_textview_item_textsize"
+                android:textColor="@color/menu_textview_item_textcolor"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/menu_view_item_linesep"
+                android:layout_marginRight="@dimen/menu_view_item_linesep"
+                android:background="@color/menu_item_sep_color" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/menu_item_configs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_height"
+            android:background="@drawable/button_item_menu_selector"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/menu_textview_item_configs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/menu_view_item_linesep"
+                android:text="@string/menu_configs"
+                android:textSize="@dimen/menu_textview_item_textsize"
+                android:textColor="@color/menu_textview_item_textcolor"
+                />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/menu_view_item_linesep"
+                android:layout_marginRight="@dimen/menu_view_item_linesep"
+                android:background="@color/menu_item_sep_color" />
+
+        </RelativeLayout>
+
+</br.com.rr.deslemtech.archi.view.component.NoClickLinearLayout>

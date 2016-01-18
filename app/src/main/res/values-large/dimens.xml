@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Action bar -->
+    <dimen name="action_bar_height">80px</dimen>
+
+    <dimen name="action_bar_button_menu_width">70px</dimen>
+    <dimen name="action_bar_button_menu_height">70px</dimen>
+
+    <dimen name="actbar_textview_title_textsize">26px</dimen>
+
+    <!-- menu.xml-->
+    <dimen name="main_screen_nav_drawer_width">350px</dimen>
+    <dimen name="menu_item_height">100px</dimen>
+    <dimen name="menu_view_item_linesep">30px</dimen>
+
+    <dimen name="menu_textview_item_textsize">24px</dimen>
+
+
+    <!-- overview -->
+    <dimen name="overview_title_view_pager_height">50px</dimen>
+
+
+    <dimen name="overview_item_default_textsize">20px</dimen>
+    <dimen name="overview_item_weather_image_width">100px</dimen>
+    <dimen name="overview_item_weather_image_height">100px</dimen>
+    <dimen name="overview_temperature_layout">100px</dimen>
+    <dimen name="overview_item_weather_main_textsize">26px</dimen>
+
+    <dimen name="overview_item_default_item_label_marginleft">20px</dimen>
+
+    <dimen name="overview_item_current_temperature_margintop">20px</dimen>
+    <dimen name="overview_item_current_temperature_marginleft">20px</dimen>
+    <dimen name="overview_item_max_min_temperature_marginleft">40px</dimen>
+    <dimen name="overview_item_weather_main_margintop">10px</dimen>
+    <dimen name="overview_item_default_texts_margintop">10px</dimen>
+    <dimen name="overview_item_horiz_scroll_preview_margintop">20px</dimen>
+
+    <!-- overview preview item -->
+    <dimen name="overview_item_preview_date_textsize">36px</dimen>
+    <dimen name="overview_item_preview_temperature_textsize">50px</dimen>
+
+    <!-- configs -->
+    <dimen name="config_default_textsize">30px</dimen>
+    <dimen name="config_small_default_textsize">20px</dimen>
+
+    <dimen name="configs_cities_remove_label_marginleft">20px</dimen>
+    <dimen name="configs_list_selected_cities_margintop">20px</dimen>
+
+</resources>
