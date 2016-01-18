@@ -1,8 +1,11 @@
 package com.desafio.neto.desafioandroid;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,12 @@ import retrofit.client.Response;
 
 @EFragment(R.layout.fragment_detail)
 public class DetailFragment extends Fragment {
+
+    @ViewById
+    View divider;
+
+    @ViewById
+    TextView previsao;
 
     @ViewById
     TextView city;
@@ -49,9 +58,14 @@ public class DetailFragment extends Fragment {
     @ViewById(R.id.speed_wind)
     TextView speedWind;
 
+    @ViewById
+    ProgressBar progress;
+
     @AfterViews
     void init() {
-        searchTime("Florianopolis");
+        previsao.setVisibility(View.GONE);
+        divider.setVisibility(View.GONE);
+        searchTime((DataCity.getCity() == null) ? "Florianopolis" : DataCity.getCity());
     }
 
     private void searchTime(String city) {
@@ -71,6 +85,9 @@ public class DetailFragment extends Fragment {
     }
 
     void updateTime(TimeDay timeDay) {
+        progress.setVisibility(View.GONE);
+        previsao.setVisibility(View.VISIBLE);
+        divider.setVisibility(View.VISIBLE);
         city.setText(timeDay.getName());
         min.setText("Temperatura mínima:" + String.valueOf(timeDay.getMain().getTemp_min()));
         max.setText("Temperatura máxima:" + String.valueOf(timeDay.getMain().getTemp_max()));

@@ -4,10 +4,17 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="email">neto@itslemonade.com</string>
+
     <string name="home">Home</string>
-    <string name="previsao">Previsão</string>
+    <string name="previsao_dia">Previsão do dia</string>
     <string name="configuracao">Configuração</string>
     <string name="previsao_do_tempo">Previsão do tempo</string>
 
-    <string name="action_settings">Config</string>
+    <string name="config">Configuração</string>
+    <string name="digite">Informe a sua cidade</string>
+
+    <string name="salvar">Salvar</string>
+    <string name="sucesso">Cidade salva com sucesso.</string>
+
 </resources>

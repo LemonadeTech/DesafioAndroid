@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.desafio.neto.desafioandroid.notifications.AlarmService;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -24,12 +26,10 @@ import org.androidannotations.annotations.ViewById;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     FragmentTransaction fragmentTransaction;
+    AlarmService alarmService;
 
     @ViewById
     Toolbar toolbar;
-
-    @ViewById
-    FloatingActionButton fab;
 
     @ViewById(R.id.drawer_layout)
     DrawerLayout drawer;
@@ -63,12 +63,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
-    }
 
-    @Click(R.id.fab)
-    void fabClicked(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        alarmService = new AlarmService(this);
+        alarmService.startAlarm();
     }
 
     @Override
@@ -89,12 +86,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        alarmService.cancelAlarm();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -112,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.commit();
             }
         } else if (id == R.id.nav_previsao) {
+            navigationView.setCheckedItem(R.id.nav_home);
+            toolbar.setTitle(R.string.previsao_dia);
             DetailFragment frag = (DetailFragment) getSupportFragmentManager().findFragmentByTag("detail");
             if (frag == null) {
                 frag = DetailFragment_.builder().build();
@@ -121,12 +121,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ft.commit();
             }
         } else if (id == R.id.nav_conf) {
-            OverviewFragment frag= (OverviewFragment) getSupportFragmentManager().findFragmentByTag("home");
+            navigationView.setCheckedItem(R.id.nav_home);
+            toolbar.setTitle(R.string.config);
+            ConfigFragment frag= (ConfigFragment) getSupportFragmentManager().findFragmentByTag("config");
             if (frag == null) {
-                frag = OverviewFragment_.builder().build();
+                frag = ConfigFragment_.builder().build();
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment, frag, "home");
+                        .replace(R.id.fragment, frag, "config");
                 ft.commit();
             }
         }

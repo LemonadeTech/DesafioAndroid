@@ -50,8 +50,8 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewViewHolder> {
 
         holder.day.setText(makeDate(date));
         holder.condicion.setText(itemList.getWeather().get(0).getMain());
-        holder.max.setText(String.valueOf((itemList.getMain() == null) ? "-" : itemList.getMain().getTemp_min()));
-        holder.min.setText(String.valueOf((itemList.getMain() == null) ? "-" : itemList.getMain().getTemp_max()));
+        holder.max.setText(String.valueOf((itemList.getMain() == null) ? "-" : itemList.getMain().getTemp_max()));
+        holder.min.setText(String.valueOf((itemList.getMain() == null) ? "-" : itemList.getMain().getTemp_min()));
     }
 
     @Override

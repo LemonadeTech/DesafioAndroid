@@ -2,7 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_gravity="center_vertical|center_horizontal"/>
 
     <TextView
         android:id="@+id/city"
@@ -12,11 +20,13 @@
         android:layout_marginBottom="15dp"/>
 
     <TextView
+        android:id="@+id/previsao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/previsao_do_tempo"/>
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
