@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="40px"
+    android:paddingRight="40px"
+    android:paddingTop="20px"
+    android:paddingBottom="20px"
+    android:background="@color/white"
+    >
+
+    <RelativeLayout
+        android:id="@+id/overview_temperature_layout"
+        android:layout_width="600px"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/overview_item_forecast_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="16/01/2016 16:66"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+        <LinearLayout
+            android:id="@+id/overview_temperature_linear_centrallayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overview_item_forecast_date"
+            android:layout_marginTop="@dimen/overview_item_current_temperature_margintop"
+            android:layout_marginLeft="120px"
+            >
+
+            <ImageView
+                android:id="@+id/overview_item_weather_image"
+                android:layout_width="@dimen/overview_item_weather_image_width"
+                android:layout_height="@dimen/overview_item_weather_image_height"
+                android:src="@drawable/placeholder"
+                android:scaleType="fitXY"
+                />
+
+            <TextView
+                android:id="@+id/overview_item_current_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/overview_item_weather_image"
+                android:layout_below="@id/overview_item_forecast_date"
+                android:layout_alignTop="@id/overview_item_weather_image"
+                android:layout_marginLeft="@dimen/overview_item_current_temperature_marginleft"
+                android:text="45"
+                android:textSize="@dimen/overview_item_current_temperature_textsize"
+                android:textColor="@color/overview_item_current_temperature_textcolor"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/overview_item_max_min_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/overview_temperature_linear_centrallayout"
+            android:layout_below="@id/overview_temperature_linear_centrallayout"
+            android:text="51 C / 40 C"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+        <TextView
+            android:id="@+id/overview_item_weather_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overview_item_max_min_temperature"
+            android:layout_marginTop="@dimen/overview_item_weather_main_margintop"
+            android:text="Rain"
+            android:textSize="@dimen/overview_item_weather_main_textsize"
+            android:textColor="@color/overview_item_weather_main_textcolor"
+            />
+
+        <TextView
+            android:id="@+id/overview_item_weather_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overview_item_weather_main"
+            android:text="light snow"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+        <View
+            android:layout_width="2px"
+            android:layout_height="250px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="40px"
+            android:background="@color/menu_item_sep_color" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/overview_infos_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/overview_temperature_layout"
+        >
+
+        <TextView
+            android:id="@+id/overview_item_wind_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/overview_item_default_texts_margintop"
+            android:text="@string/wind"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+        <TextView
+            android:id="@+id/overview_item_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/overview_item_wind_label"
+            android:layout_alignBottom="@id/overview_item_wind_label"
+            android:layout_marginStart="@dimen/overview_item_default_item_label_marginleft"
+            android:text="50 m/s 35o"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+        <TextView
+            android:id="@+id/overview_item_humidity_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overview_item_wind"
+            android:layout_marginTop="@dimen/overview_item_default_texts_margintop"
+            android:text="@string/humidity"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+        <TextView
+            android:id="@+id/overview_item_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/overview_item_humidity_label"
+            android:layout_alignBottom="@id/overview_item_humidity_label"
+            android:layout_marginStart="@dimen/overview_item_default_item_label_marginleft"
+            android:text="80%"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+        <TextView
+            android:id="@+id/overview_item_clouds_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overview_item_humidity"
+            android:layout_marginTop="@dimen/overview_item_default_texts_margintop"
+            android:text="@string/clouds"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+        <TextView
+            android:id="@+id/overview_item_clouds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/overview_item_clouds_label"
+            android:layout_alignBottom="@id/overview_item_clouds_label"
+            android:layout_marginStart="@dimen/overview_item_default_item_label_marginleft"
+            android:text="40%"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="240px"
+        android:layout_below="@id/overview_temperature_layout"
+        android:layout_marginTop="@dimen/overview_item_horiz_scroll_preview_margintop"
+        android:background="@color/overview_item_preview_background"
+        >
+
+        <!-- here we inflate our layouts with future weather preview -->
+        <LinearLayout
+            android:id="@+id/overview_item_linear_parent_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            />
+
+    </HorizontalScrollView>
+
+    <br.com.rr.deslemtech.archi.view.component.NoClickRelativeLayout
+        android:id="@+id/overview_item_unpreviewed_layout"
+        android:layout_width="match_parent"
+        android:layout_height="320px"
+        android:layout_below="@id/overview_temperature_layout"
+        android:layout_marginTop="@dimen/overview_item_horiz_scroll_preview_margintop"
+        android:background="@color/overview_item_preview_background"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/overview_item_unpreviewed_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/overview_unpreviewed"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/overview_item_default_textcolor"
+            />
+
+    </br.com.rr.deslemtech.archi.view.component.NoClickRelativeLayout>
+
+    <br.com.rr.deslemtech.archi.view.component.NoClickRelativeLayout
+        android:id="@+id/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone"
+        >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            />
+
+    </br.com.rr.deslemtech.archi.view.component.NoClickRelativeLayout>
+
+    <br.com.rr.deslemtech.archi.view.component.NoClickRelativeLayout
+        android:id="@+id/preview_unavailable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/preview_unavailable_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/preview_unavailable"
+            android:textSize="@dimen/overview_item_default_textsize"
+            android:textColor="@color/black"
+            />
+
+    </br.com.rr.deslemtech.archi.view.component.NoClickRelativeLayout>
+
+</RelativeLayout>

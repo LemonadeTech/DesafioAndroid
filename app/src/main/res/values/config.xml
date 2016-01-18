@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="ws_current_addr">http://api.openweathermap.org/data/2.5/weather?</string>
+    <string name="ws_forecast_daily_addr">http://api.openweathermap.org/data/2.5/forecast/daily?</string>
+
+    <string name="ws_image_addr">http://openweathermap.org/img/w/</string>
+
+    <string name="apikey">99ee8577a424dbc4064f162cc023a46b</string>
+
+</resources>

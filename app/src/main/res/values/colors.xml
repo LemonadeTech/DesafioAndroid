@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="loading_dark_background">#88000000</color>
+
+    <color name="login_background">#2d5c7e</color>
+
+    <color name="action_bar_background">#2b5b7d</color>
+    <color name="mmm_line_cell_background">#255373</color>
+    <color name="mmm_define_post_background">#2B5B7D</color>
+
+    <color name="slide_transparent">#cc000000</color>
+
+    <color name="green">#9bcb4d</color>
+    <color name="orange">#f68e2e</color>
+    <color name="yellow">#f3bc34</color>
+    <color name="mmm_orange">#f4a42e</color>
+    <color name="blue_button_pressed">#2B5B7D</color>
+
+    <color name="dark_gray">#9b9b9b</color>
+    <color name="light_grayish_cyan">#eef0f0</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="white_menu">#f9fafa</color>
+    <color name="menu_item_sep_color">#d4d2d0</color>
+
+    <color name="button_default_disabled_background">#55AAAAAA</color>
+
+    <color name="actbar_textview_title_textcolor">#f4a42e</color>
+
+    <color name="menu_textview_item_textcolor">#f68e2e</color>
+    <color name="menu_textview_logged_user_textcolor">#9b9b9b</color>
+    <color name="menu_textview_item_logout_textcolor">#2B5B7D</color>
+
+
+
+    <color name="overview_page_title_indicator_color">@color/black</color>
+    <color name="overview_page_title_textcolor">@color/black</color>
+
+    <color name="overview_title_view_pager_background">#aaaaaa</color>
+
+    <color name="overview_item_default_textcolor">#1a1a1a</color>
+    <color name="overview_item_current_temperature_textcolor">#2a2a2a</color>
+    <color name="overview_item_weather_main_textcolor">#222222</color>
+
+    <color name="overview_item_preview_background">#a0a0a0</color>
+
+</resources>

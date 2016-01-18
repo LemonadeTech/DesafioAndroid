@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20px"
+    >
+
+    <TextView
+        android:id="@+id/configs_city_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/city"
+        android:textSize="@dimen/config_default_textsize"
+        android:textColor="@color/black"
+        />
+
+    <EditText
+        android:id="@+id/configs_city"
+        android:layout_width="400px"
+        android:layout_height="80px"
+        android:layout_below="@id/configs_city_label"
+        android:textSize="@dimen/config_default_textsize"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:id="@+id/configs_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/configs_city"
+        android:text="@string/add"
+        android:textSize="@dimen/config_default_textsize"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/configs_cities_added_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/configs_button"
+        android:layout_marginTop="@dimen/configs_list_selected_cities_margintop"
+        android:text="@string/city_added"
+        android:textSize="@dimen/config_default_textsize"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/configs_cities_remove_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/configs_cities_added_label"
+        android:layout_toRightOf="@id/configs_cities_added_label"
+        android:layout_marginLeft="@dimen/configs_cities_remove_label_marginleft"
+        android:text="@string/long_click_to_remove"
+        android:textSize="@dimen/config_small_default_textsize"
+        android:textColor="#888888"
+        />
+
+    <ListView
+        android:id="@+id/configs_list_selected_cities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/configs_cities_added_label"
+        android:layout_marginTop="@dimen/configs_list_selected_cities_margintop"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/overview_item_preview"
+    android:layout_width="180px"
+    android:layout_height="300px"
+    android:layout_margin="10px"
+    android:background="#33000000"
+    android:clickable="true"
+    >
+
+    <TextView
+        android:id="@+id/overview_item_preview_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="17"
+        android:textSize="@dimen/overview_item_preview_date_textsize"
+        android:textColor="@color/overview_item_default_textcolor"
+        />
+
+    <ImageView
+        android:id="@+id/overview_item_preview_weather_image"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_below="@id/overview_item_preview_date"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/placeholder"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/overview_item_preview_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overview_item_preview_weather_image"
+        android:layout_centerHorizontal="true"
+        android:text="45"
+        android:textSize="@dimen/overview_item_preview_temperature_textsize"
+        android:textColor="@color/overview_item_current_temperature_textcolor"
+        />
+
+    <TextView
+        android:id="@+id/overview_item_max_min_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="51 / 40 C"
+        android:textSize="@dimen/overview_item_default_textsize"
+        android:textColor="@color/overview_item_default_textcolor"
+        />
+
+</RelativeLayout>
