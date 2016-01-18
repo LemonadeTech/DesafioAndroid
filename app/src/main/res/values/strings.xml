@@ -18,4 +18,14 @@
     <string name="sucesso">Cidade salva com sucesso.</string>
     <string name="erro">Cidade informada não encontrada.</string>
 
+    <string name="temeperatura_minima">Temperatura mínima</string>
+    <string name="temeperatura_maxima">Temperatura máxima</string>
+
+
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="humidade">Humidade</string>
+    <string name="pressao">Pressão</string>
+    <string name="velocidade_vento">Velocidade do vento</string>
+
 </resources>

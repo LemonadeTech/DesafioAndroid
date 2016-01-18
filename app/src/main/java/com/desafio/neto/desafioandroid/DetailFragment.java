@@ -89,8 +89,12 @@ public class DetailFragment extends Fragment {
         previsao.setVisibility(View.VISIBLE);
         divider.setVisibility(View.VISIBLE);
         city.setText(timeDay.getName());
-        min.setText("Temperatura mínima:" + String.valueOf(timeDay.getMain().getTemp_min()));
-        max.setText("Temperatura máxima:" + String.valueOf(timeDay.getMain().getTemp_max()));
+        String temperaturaMinima = R.string.temeperatura_minima + ": "
+                + String.valueOf(timeDay.getMain().getTemp_min());
+        min.setText(temperaturaMinima);
+        String temperaturaMaxima = R.string.temeperatura_maxima + ": "
+                + String.valueOf(timeDay.getMain().getTemp_max());
+        max.setText(temperaturaMaxima);
 
         String image = timeDay.getWeather().get(0).getIcon() + ".png";
         Picasso.with(getContext()).load("http://openweathermap.org/img/w/"+ image)
@@ -98,10 +102,15 @@ public class DetailFragment extends Fragment {
                 .centerCrop()
                 .into(icon);
 
-        latitude.setText("Latitude: " + String.valueOf(timeDay.getCoord().getLat()));
-        longitude.setText("Longitude: " + String.valueOf(timeDay.getCoord().getLon()));
-        humidity.setText("Humidade: " + String.valueOf(timeDay.getMain().getHumidity()));
-        pressure.setText("Pressão: " + String.valueOf(timeDay.getMain().getPressure()));
-        speedWind.setText("Velocidade do vento: " + String.valueOf(timeDay.getWind().getSpeed()));
+        String lat = R.string.latitude + ": " + String.valueOf(timeDay.getCoord().getLat());
+        latitude.setText(lat);
+        String lon = R.string.longitude +": " + String.valueOf(timeDay.getCoord().getLon());
+        longitude.setText(lon);
+        String humi = R.string.humidade + ": " + String.valueOf(timeDay.getMain().getHumidity());
+        humidity.setText(humi);
+        String pr = R.string.pressao + ": " + String.valueOf(timeDay.getMain().getPressure());
+        pressure.setText(pr);
+        String speed = R.string.velocidade_vento + ": " + String.valueOf(timeDay.getWind().getSpeed());
+        speedWind.setText(speed);
     }
 }

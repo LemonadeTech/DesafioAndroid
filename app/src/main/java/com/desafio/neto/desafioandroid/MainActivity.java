@@ -125,27 +125,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            OverviewFragment frag = (OverviewFragment) getSupportFragmentManager().findFragmentByTag("home");
-            if (frag == null) {
-                frag = OverviewFragment_.builder().build();
-                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment, frag, "home");
-                ft.commit();
-            }
+            navigationView.setCheckedItem(R.id.nav_home);
+            OverviewFragment_ frag = null;
+            makeFragment(frag, "home");
         } else if (id == R.id.nav_previsao) {
-            navigationView.setCheckedItem(R.id.nav_home);
+            navigationView.setCheckedItem(R.id.nav_previsao);
             toolbar.setTitle(R.string.previsao_dia);
-            DetailFragment frag = (DetailFragment) getSupportFragmentManager().findFragmentByTag("detail");
-            if (frag == null) {
-                frag = DetailFragment_.builder().build();
-                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment, frag, "detail");
-                ft.commit();
-            }
+            DetailFragment_ frag = null;
+            makeFragment(frag, "detail");
         } else if (id == R.id.nav_conf) {
-            navigationView.setCheckedItem(R.id.nav_home);
+            navigationView.setCheckedItem(R.id.nav_conf);
             toolbar.setTitle(R.string.config);
             ConfigFragment_ frag = null;
             makeFragment(frag, "config");
