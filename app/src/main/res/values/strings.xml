@@ -16,5 +16,6 @@
 
     <string name="salvar">Salvar</string>
     <string name="sucesso">Cidade salva com sucesso.</string>
+    <string name="erro">Cidade informada não encontrada.</string>
 
 </resources>

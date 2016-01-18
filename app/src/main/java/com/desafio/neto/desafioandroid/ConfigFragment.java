@@ -1,5 +1,6 @@
 package com.desafio.neto.desafioandroid;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,12 +28,14 @@ import retrofit.client.Response;
 @EFragment(R.layout.fragment_config)
 public class ConfigFragment extends Fragment {
 
+    String[] cities;
+
     @ViewById
     AutoCompleteTextView city;
 
     @AfterViews
     void init() {
-        String[] cities = getResources().getStringArray(R.array.city);
+        cities = getResources().getStringArray(R.array.city);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, cities);
         city.setAdapter(adapter);
@@ -44,7 +47,20 @@ public class ConfigFragment extends Fragment {
 
     @Click(R.id.save)
     void saveCity() {
-        DataCity.setCity(removerAcentos(city.getText().toString()));
-        Toast.makeText(getContext(), R.string.sucesso, Toast.LENGTH_LONG).show();
+        boolean isValid = false;
+        for(String c : cities) {
+            if (c.equals(city.getText().toString()))
+                isValid = true;
+        }
+        if (isValid) {
+            DataCity.setCity(removerAcentos(city.getText().toString()));
+            Toast.makeText(getContext(), R.string.sucesso, Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(getContext(), R.string.erro, Toast.LENGTH_LONG).show();
+
+        if(getResources().getBoolean(R.bool.dual_pane)) {
+            Intent intent = new Intent(getContext(), MainActivity_.class);
+            startActivity(intent);
+        }
     }
 }

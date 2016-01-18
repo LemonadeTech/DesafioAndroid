@@ -9,8 +9,9 @@ import com.desafio.neto.desafioandroid.openWater.OpenWaterMap;
 import org.junit.Before;
 import org.junit.Test;
 
-import retrofit2.Callback;
-import retrofit2.Response;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 import static org.junit.Assert.assertThat;
 
@@ -32,9 +33,10 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
 
     @Test
     public void emailValidator_CorrectEmailSimple_ReturnsTrue() {
-        openWater.getWeekTime(new Callback<TimeWeek>() {
+        openWater.getWeekTime("Joinville", new Callback<TimeWeek>() {
+
             @Override
-            public void onResponse(Response<TimeWeek> response) {
+            public void success(TimeWeek timeWeek, Response response) {
                 boolean test = false;
                 if (response != null){
                     test = true;
@@ -43,8 +45,8 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
             }
 
             @Override
-            public void onFailure(Throwable t) {
-                assertEquals(test, true);
+            public void failure(RetrofitError error) {
+                assertEquals(false, true);
             }
         });
 

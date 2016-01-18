@@ -2,9 +2,12 @@ package com.desafio.neto.desafioandroid;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.desafio.neto.desafioandroid.notifications.AlarmReceiver;
 import com.desafio.neto.desafioandroid.notifications.AlarmService;
 
 import org.androidannotations.annotations.AfterViews;
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     FragmentTransaction fragmentTransaction;
     AlarmService alarmService;
+    boolean isDualPane;
 
     @ViewById
     Toolbar toolbar;
@@ -40,11 +45,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @ViewById
     RelativeLayout fragment;
 
+    @ViewById
+    RelativeLayout fragment2;
+
     @AfterViews
     void init() {
         setSupportActionBar(toolbar);
 
-        OverviewFragment frag= (OverviewFragment) getSupportFragmentManager().findFragmentByTag("home");
+        isDualPane = getResources().getBoolean(R.bool.dual_pane);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer,
+                toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NotificationManager notifManager= (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notifManager.cancel(1);
+
+        OverviewFragment frag = (OverviewFragment) getSupportFragmentManager().findFragmentByTag("home");
         if (frag == null) {
             frag = OverviewFragment_.builder().build();
             android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
@@ -53,10 +71,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ft.commit();
         }
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer,
-                toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        if(isDualPane) {
+            DetailFragment frag2 = (DetailFragment) getSupportFragmentManager().findFragmentByTag("detail");
+            if (frag2 == null) {
+                frag2 = DetailFragment_.builder().build();
+                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment2, frag2, "detail");
+                ft.commit();
+            }
+        }
 
         FragmentManager fm = getFragmentManager();
         fragmentTransaction = fm.beginTransaction();
@@ -123,18 +147,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_conf) {
             navigationView.setCheckedItem(R.id.nav_home);
             toolbar.setTitle(R.string.config);
-            ConfigFragment frag= (ConfigFragment) getSupportFragmentManager().findFragmentByTag("config");
-            if (frag == null) {
-                frag = ConfigFragment_.builder().build();
-                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment, frag, "config");
-                ft.commit();
-            }
+            ConfigFragment_ frag = null;
+            makeFragment(frag, "config");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void makeFragment(Object frag, String tag) {
+        frag = getSupportFragmentManager().findFragmentByTag(tag);
+        if (frag == null) {
+            frag = ConfigFragment_.builder().build();
+            android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment, (Fragment) frag, tag);
+            ft.commit();
+        }
     }
 }

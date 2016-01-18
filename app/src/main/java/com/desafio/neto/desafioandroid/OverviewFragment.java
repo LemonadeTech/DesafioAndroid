@@ -23,6 +23,8 @@ import retrofit.client.Response;
 @EFragment(R.layout.fragment_overview)
 public class OverviewFragment extends Fragment {
 
+    boolean isDualPane;
+
     @ViewById
     View divider;
 
@@ -43,8 +45,11 @@ public class OverviewFragment extends Fragment {
 
     @AfterViews
     void init() {
-        previsao.setVisibility(View.GONE);
-        divider.setVisibility(View.GONE);
+        isDualPane = getResources().getBoolean(R.bool.dual_pane);
+        if (!isDualPane) {
+            previsao.setVisibility(View.GONE);
+            divider.setVisibility(View.GONE);
+        }
         searchTime((DataCity.getCity() == null) ? "Florianopolis" : DataCity.getCity());
     }
 
@@ -65,10 +70,12 @@ public class OverviewFragment extends Fragment {
     }
 
     void updateTime(TimeWeek timeWeek) {
-        previsao.setVisibility(View.VISIBLE);
-        divider.setVisibility(View.VISIBLE);
+        if (!isDualPane) {
+            previsao.setVisibility(View.VISIBLE);
+            divider.setVisibility(View.VISIBLE);
+            city.setText(timeWeek.getCity().getName());
+        }
         progress.setVisibility(View.GONE);
-        city.setText(timeWeek.getCity().getName());
         timeList.setLayoutManager(new LinearLayoutManager(getContext()));
         OverviewAdapter adapter = new OverviewAdapter(getContext(), timeWeek);
         timeList.setAdapter(adapter);
