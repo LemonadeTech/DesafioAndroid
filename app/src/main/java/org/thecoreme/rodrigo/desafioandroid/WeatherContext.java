@@ -30,9 +30,8 @@ public class WeatherContext {
             WeatherConfig config = new WeatherConfig();
             config.ApiKey = "2ffdd0916ecc926d15b723006c99fd42"; // TODO
             config.maxResult = 5;
+            config.numDays = 6;
             config.unitSystem = WeatherConfig.UNIT_SYSTEM.M;
-//            client.updateWeatherConfig(config);
-
 
             m_client = new WeatherClient.ClientBuilder()
                     .attach(ctx)

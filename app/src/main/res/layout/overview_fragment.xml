@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview_current"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="4dp" />
+
+    <ListView
+        android:id="@+id/currentDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/txt1" />
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview_forecast"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/currentDay" />
+
+    <ListView
+        android:id="@+id/forecastDays"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/txt2" />
+</LinearLayout>

@@ -22,7 +22,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class SearchLocationActivity extends Activity {
+public class CitySettings extends Activity {
 
 	private ListView cityListView;
 	private ProgressBar bar;
@@ -32,13 +32,13 @@ public class SearchLocationActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_location_activity);
+        setContentView(R.layout.city_settings);
 
         client = WeatherContext.getInstance().getClient(this);
 
         cityListView = (ListView) findViewById(R.id.cityList);
         bar = (ProgressBar) findViewById(R.id.progressBar);
-        adp = new CityAdapter(SearchLocationActivity.this, new ArrayList<City>());
+        adp = new CityAdapter(CitySettings.this, new ArrayList<City>());
         cityListView.setAdapter(adp);
 
         ImageView searchView = (ImageView) findViewById(R.id.imgSearch);
@@ -70,14 +70,14 @@ public class SearchLocationActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos,
                                     long id) {
-                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(SearchLocationActivity.this);
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(CitySettings.this);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 City city = (City) parent.getItemAtPosition(pos);
                 editor.putString("cityId", city.getId());
                 editor.putString("cityName", city.getName());
                 editor.commit();
 
-                NavUtils.navigateUpFromSameTask(SearchLocationActivity.this);
+                NavUtils.navigateUpFromSameTask(CitySettings.this);
             }
         });
     }

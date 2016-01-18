@@ -1,12 +1,15 @@
 <resources>
     <string name="app_name">DesafioAndroid</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_settings">Configure city</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings">Configure city...</string>
 
-    <string name="pref_unitTitle">Unit system</string>
-    <string name="pref_unitSummary">Unit system to display weather data</string>
-    <string name="pref_unitDefaultValue">Metric</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="pref_City">City</string>
+    <string name="pref_cityName">City name</string>
+
+    <string name="search_text1">Insert the city name</string>
+    <string name="search_text2">Search results</string>
+
+    <string name="overview_current">Weather for</string>
+    <string name="overview_forecast">Forecast</string>
 </resources>

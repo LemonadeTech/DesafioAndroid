@@ -10,7 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
-        android:text="Insert the city name"
+        android:text="@string/search_text1"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -23,38 +23,38 @@
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:ems="10">
-
         <requestFocus />
     </EditText>
     
-    <ImageView    android:id="@+id/imgSearch"
-        		  android:layout_width="wrap_content"
-        		  android:layout_height="wrap_content"
-        		  android:src="@android:drawable/ic_menu_search"
-        		  android:layout_toRightOf="@id/cityEdtText"
-        		  android:layout_alignBottom="@id/cityEdtText"
+    <ImageView
+        android:id="@+id/imgSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_search"
+        android:layout_toRightOf="@id/cityEdtText"
+        android:layout_alignBottom="@id/cityEdtText"
  	/>
 
-    <TextView android:id="@+id/txt1"
-        	  android:layout_width="wrap_content"
-        	  android:layout_height="wrap_content"
-        	  android:text="Results"
-        	  android:layout_below="@id/cityEdtText"
-        	  android:textAppearance="?android:attr/textAppearanceMedium" 
-        	  android:layout_marginTop="14dp"/>
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_text2"
+        android:layout_below="@id/cityEdtText"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="14dp"/>
     
-    <ListView android:id="@+id/cityList"
-        		  android:layout_width="wrap_content"
-        		  android:layout_height="wrap_content" 
-        		  android:layout_below="@id/txt1"
-        		  android:layout_marginTop="3dp"/>
-    
+    <ListView
+        android:id="@+id/cityList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt1"
+        android:layout_marginTop="8dp"/>
+
     <ProgressBar
        android:id="@+id/progressBar"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_below="@id/txt1"
        android:visibility="gone" />
-    
-    
 </RelativeLayout>

@@ -1,16 +1,14 @@
 package org.thecoreme.rodrigo.desafioandroid;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,15 +16,11 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.survivingwithandroid.weather.lib.WeatherClient;
-import com.survivingwithandroid.weather.lib.WeatherConfig;
 import com.survivingwithandroid.weather.lib.exception.WeatherLibException;
-import com.survivingwithandroid.weather.lib.model.City;
 import com.survivingwithandroid.weather.lib.model.CurrentWeather;
 //import com.survivingwithandroid.weather.lib.provider.wunderground.WeatherUndergroundProviderType;
-import com.survivingwithandroid.weather.lib.provider.openweathermap.OpenweathermapProviderType;
 import com.survivingwithandroid.weather.lib.request.WeatherRequest;
-
-import java.util.List;
+import org.thecoreme.rodrigo.desafioandroid.OverviewFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,33 +39,38 @@ public class MainActivity extends AppCompatActivity {
         try {
             WeatherClient client = WeatherContext.getInstance().getClient(this);
 
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            String cityId = sharedPref.getString("cityId", "3463237");
-            String cityName = sharedPref.getString("cityName", "Florianopolis");
-            Log.d("WLBB", "__");
-            Log.d("WLBB", cityId);
-            Log.d("WLBB", cityName);
-            Log.d("WLBB", "__");
+//            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+//            String cityId = sharedPref.getString("cityId", null);
+//            String cityName = sharedPref.getString("cityName", null);
+//            Log.d("WLBB", "__");
+//            Log.d("WLBB", cityId);
+//            Log.d("WLBB", cityName);
+//            Log.d("WLBB", "__");
 
-            client.getCurrentCondition(new WeatherRequest(cityId), new WeatherClient.WeatherEventListener() {
-                @Override
-                public void onWeatherRetrieved(CurrentWeather currentWeather) {
-                    float currentTemp = currentWeather.weather.temperature.getTemp();
-                    Log.d("WL", "City [" + currentWeather.weather.location.getCity() + "] Current temp [" + currentTemp + "]");
-                }
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.content, OverviewFragment.newInstance())
+                    .commit();
 
-                @Override
-                public void onWeatherError(WeatherLibException e) {
-                    Log.d("WL", "Weather Error - parsing data");
-                    e.printStackTrace();
-                }
 
-                @Override
-                public void onConnectionError(Throwable throwable) {
-                    Log.d("WL", ">> Connection error");
-                    throwable.printStackTrace();
-                }
-            });
+//            client.getCurrentCondition(new WeatherRequest(cityId), new WeatherClient.WeatherEventListener() {
+//                @Override
+//                public void onWeatherRetrieved(CurrentWeather currentWeather) {
+//                    float currentTemp = currentWeather.weather.temperature.getTemp();
+//                    Log.d("WL", "City [" + currentWeather.weather.location.getCity() + "] Current temp [" + currentTemp + "]");
+//                }
+//
+//                @Override
+//                public void onWeatherError(WeatherLibException e) {
+//                    Log.d("WL", "Weather Error - parsing data");
+//                    e.printStackTrace();
+//                }
+//
+//                @Override
+//                public void onConnectionError(Throwable throwable) {
+//                    Log.d("WL", ">> Connection error");
+//                    throwable.printStackTrace();
+//                }
+//            });
         } catch (Throwable t) {
             Log.d("FUCK", "SOMETHING WRONG");
             t.printStackTrace();
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
+            Intent intent = new Intent(this, CitySettings.class);
             startActivity(intent);
 
             return true;
