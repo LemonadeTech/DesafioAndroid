@@ -1,33 +1,37 @@
 package org.thecoreme.rodrigo.desafioandroid;
 
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.os.Bundle;
+import android.app.Activity;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView;
 import android.view.LayoutInflater;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.widget.TextView;
 
 import com.survivingwithandroid.weather.lib.WeatherClient;
 import com.survivingwithandroid.weather.lib.model.CurrentWeather;
-import com.survivingwithandroid.weather.lib.model.DayForecast;
 import com.survivingwithandroid.weather.lib.model.WeatherForecast;
 import com.survivingwithandroid.weather.lib.request.WeatherRequest;
 import com.survivingwithandroid.weather.lib.exception.WeatherLibException;
 
-
 public class OverviewFragment extends WeatherFragment {
+    OnCurrentSelectedListener m_callback;
+
     private ListView m_currentDay;
     private ListView m_forecastList;
+
+    private AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+            m_callback.onCurrentSelected();
+        }
+    };
 
     public static OverviewFragment newInstance() {
         OverviewFragment fragment = new OverviewFragment();
         return fragment;
-    }
-
-    public OverviewFragment() {
     }
 
     @Override
@@ -42,6 +46,8 @@ public class OverviewFragment extends WeatherFragment {
         View v = inflater.inflate(R.layout.overview_fragment, container, false);
 
         m_currentDay = (ListView) v.findViewById(R.id.currentDay);
+        m_currentDay.setOnItemClickListener(listener);
+
         m_forecastList = (ListView) v.findViewById(R.id.forecastDays);
 
         return v;
@@ -69,11 +75,8 @@ public class OverviewFragment extends WeatherFragment {
         weatherClient.getCurrentCondition(new WeatherRequest(cityId), new WeatherClient.WeatherEventListener() {
             @Override
             public void onWeatherRetrieved(CurrentWeather currentWeather) {
-                Log.d("WL", "FUCK YEAHHHHHH");
-
                 WeatherAdapter adp = new WeatherAdapter(currentWeather, getActivity());
                 m_currentDay.setAdapter(adp);
-                Log.d("WL", ":: " + currentWeather.weather.temperature.getTemp());
             }
 
             @Override
@@ -102,5 +105,21 @@ public class OverviewFragment extends WeatherFragment {
             public void onConnectionError(Throwable t) {
             }
         });
+    }
+
+    public interface OnCurrentSelectedListener {
+        public void onCurrentSelected();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            m_callback = (OnCurrentSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnCurrentSelectedListener");
+        }
     }
 }

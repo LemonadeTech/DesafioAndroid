@@ -1,33 +1,22 @@
 package org.thecoreme.rodrigo.desafioandroid;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.survivingwithandroid.weather.lib.WeatherClient;
-import com.survivingwithandroid.weather.lib.exception.WeatherLibException;
+import com.google.gson.Gson;
 import com.survivingwithandroid.weather.lib.model.CurrentWeather;
-//import com.survivingwithandroid.weather.lib.provider.wunderground.WeatherUndergroundProviderType;
-import com.survivingwithandroid.weather.lib.request.WeatherRequest;
-import org.thecoreme.rodrigo.desafioandroid.OverviewFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements OverviewFragment.OnCurrentSelectedListener {
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
     private GoogleApiClient client;
 
     @Override
@@ -35,48 +24,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ///
-        try {
-            WeatherClient client = WeatherContext.getInstance().getClient(this);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content, OverviewFragment.newInstance())
+                .commit();
 
-//            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-//            String cityId = sharedPref.getString("cityId", null);
-//            String cityName = sharedPref.getString("cityName", null);
-//            Log.d("WLBB", "__");
-//            Log.d("WLBB", cityId);
-//            Log.d("WLBB", cityName);
-//            Log.d("WLBB", "__");
-
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.content, OverviewFragment.newInstance())
-                    .commit();
-
-
-//            client.getCurrentCondition(new WeatherRequest(cityId), new WeatherClient.WeatherEventListener() {
-//                @Override
-//                public void onWeatherRetrieved(CurrentWeather currentWeather) {
-//                    float currentTemp = currentWeather.weather.temperature.getTemp();
-//                    Log.d("WL", "City [" + currentWeather.weather.location.getCity() + "] Current temp [" + currentTemp + "]");
-//                }
-//
-//                @Override
-//                public void onWeatherError(WeatherLibException e) {
-//                    Log.d("WL", "Weather Error - parsing data");
-//                    e.printStackTrace();
-//                }
-//
-//                @Override
-//                public void onConnectionError(Throwable throwable) {
-//                    Log.d("WL", ">> Connection error");
-//                    throwable.printStackTrace();
-//                }
-//            });
-        } catch (Throwable t) {
-            Log.d("FUCK", "SOMETHING WRONG");
-            t.printStackTrace();
-        }
-        ///
-
+        // TODO
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -141,5 +93,21 @@ public class MainActivity extends AppCompatActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            super.onBackPressed();
+        } else {
+            getFragmentManager().popBackStack();
+        }
+    }
+
+    public void onCurrentSelected() {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.content, DetailedFragment.newInstance())
+                .addToBackStack(null)
+                .commit();
     }
 }

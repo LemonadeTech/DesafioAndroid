@@ -10,6 +10,6 @@
     <string name="search_text1">Insert the city name</string>
     <string name="search_text2">Search results</string>
 
-    <string name="overview_current">Weather for</string>
+    <string name="overview_current">Current weather in</string>
     <string name="overview_forecast">Forecast</string>
 </resources>
