@@ -115,12 +115,13 @@ public class DetailedFragment extends WeatherFragment {
                 BaseWeather.WeatherUnit units = currentWeather.getUnit();
 
                 location.setText(weather.location.getCity() + ", " + weather.location.getCountry());
-                description.setText("Description: " + weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
+                description.setText(weather.currentCondition.getCondition() + " (" + weather.currentCondition.getDescr() + ")");
                 temp.setText("" + ((int) weather.temperature.getTemp()) + units.tempUnit);
 
-                humidity.setText("Humidity: " + weather.currentCondition.getHumidity() + "%");
-                tempMin.setText("Min: " + weather.temperature.getMinTemp() + units.tempUnit);
                 tempMax.setText("Max: " + weather.temperature.getMaxTemp() + units.tempUnit);
+                tempMin.setText("Min: " + weather.temperature.getMinTemp() + units.tempUnit);
+
+                humidity.setText("Humidity: " + weather.currentCondition.getHumidity() + "%");
                 windSpeed.setText("Wind: " + weather.wind.getSpeed() + units.speedUnit +
                         (int) weather.wind.getDeg() +
                         "° (" + WindDirection.getDir((int) weather.wind.getDeg()) + ")");
