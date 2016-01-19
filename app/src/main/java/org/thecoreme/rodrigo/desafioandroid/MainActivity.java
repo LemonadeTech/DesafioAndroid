@@ -1,21 +1,19 @@
 package org.thecoreme.rodrigo.desafioandroid;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.gson.Gson;
-import com.survivingwithandroid.weather.lib.model.CurrentWeather;
 
 public class MainActivity extends AppCompatActivity
-        implements OverviewFragment.OnCurrentSelectedListener {
+        implements OverviewFragment.OnTodaySelectedListener {
 
     private GoogleApiClient client;
 
@@ -24,11 +22,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getFragmentManager().beginTransaction()
-                .replace(R.id.content, OverviewFragment.newInstance())
-                .commit();
+        // check if we have a fragment lying around...
+        if (getFragmentManager().getBackStackEntryCount() == 0)
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.content, OverviewFragment.newInstance())
+                    .commit();
+        else
+            getFragmentManager().getBackStackEntryAt(
+                    getFragmentManager().getBackStackEntryCount() - 1);
 
-        // TODO
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 
@@ -45,8 +48,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        // our settings activity
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, CitySettings.class);
+            Intent intent = new Intent(this, CitySettingsActivity.class);
             startActivity(intent);
 
             return true;
@@ -96,15 +100,29 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() == 0) {
-            super.onBackPressed();
-        } else {
-            getFragmentManager().popBackStack();
-        }
+    protected void onRestart() {
+        super.onRestart();
     }
 
-    public void onCurrentSelected() {
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 0)
+            super.onBackPressed();
+        else
+            getFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    public void onTodaySelected() {
         getFragmentManager().beginTransaction()
                 .replace(R.id.content, DetailedFragment.newInstance())
                 .addToBackStack(null)

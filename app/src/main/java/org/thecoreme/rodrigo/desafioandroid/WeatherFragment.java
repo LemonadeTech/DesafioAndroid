@@ -11,6 +11,12 @@ public abstract class WeatherFragment extends Fragment {
     public WeatherFragment() {
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     protected WeatherEventListener getListener() {
         return ((WeatherEventListener) getActivity());
     }

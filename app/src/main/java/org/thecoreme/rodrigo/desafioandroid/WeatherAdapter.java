@@ -27,17 +27,11 @@ public class WeatherAdapter extends ArrayAdapter<DayForecast> {
 
     public List<DayForecast> m_forecastList;
 	private Context m_context;
+
 	private BaseWeather.WeatherUnit m_units;
     private boolean m_today = false;
 
-	public WeatherAdapter(WeatherForecast forecast, Context context) {
-		super(context, R.layout.row_overview_layout);
-
-		m_forecastList = forecast.getForecast();
-        m_context = context;
-        m_units = forecast.getUnit();
-	}
-
+    // adapter to today's data
     public WeatherAdapter(CurrentWeather current, Context context) {
         super(context, R.layout.row_overview_layout);
 
@@ -51,6 +45,15 @@ public class WeatherAdapter extends ArrayAdapter<DayForecast> {
         m_units = current.getUnit();
 
         m_today = true;
+    }
+
+    // adapter to forecast data
+    public WeatherAdapter(WeatherForecast forecast, Context context) {
+        super(context, R.layout.row_overview_layout);
+
+        m_forecastList = forecast.getForecast();
+        m_context = context;
+        m_units = forecast.getUnit();
     }
 
 	@Override
@@ -77,6 +80,7 @@ public class WeatherAdapter extends ArrayAdapter<DayForecast> {
 		DayForecast forecast = m_forecastList.get(position);
 		Date d = new Date();
 		Calendar gc =  new GregorianCalendar();
+
 		gc.setTime(d);
 		gc.add(GregorianCalendar.DAY_OF_MONTH, position + 1);
 
@@ -84,11 +88,11 @@ public class WeatherAdapter extends ArrayAdapter<DayForecast> {
             day.setText("Today");
 
             maxTemp.setText(Math.round(forecast.weather.temperature.getTemp()) + m_units.tempUnit);
+            // overriding layout, just this time ;)
             maxTemp.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
             maxTemp.setTextColor(Color.BLACK);
 
             description.setText(forecast.weather.currentCondition.getCondition());
-
         } else {
             day.setText(m_dayFormat.format(gc.getTime()));
             date.setText("(" + m_monthFormat.format(gc.getTime()) + ")");

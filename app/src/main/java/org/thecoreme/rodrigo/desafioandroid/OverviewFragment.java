@@ -18,19 +18,21 @@ import com.survivingwithandroid.weather.lib.request.WeatherRequest;
 import com.survivingwithandroid.weather.lib.exception.WeatherLibException;
 
 public class OverviewFragment extends WeatherFragment {
-    OnCurrentSelectedListener m_callback;
+    OnTodaySelectedListener m_callback;
 
     private ListView m_currentDay;
     private ListView m_forecastList;
 
+    // tap on today's weather to view a detailed screen
     private AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-            m_callback.onCurrentSelected();
+            m_callback.onTodaySelected();
         }
     };
 
     public static OverviewFragment newInstance() {
         OverviewFragment fragment = new OverviewFragment();
+
         return fragment;
     }
 
@@ -71,7 +73,7 @@ public class OverviewFragment extends WeatherFragment {
         TextView name = (TextView) getView().findViewById(R.id.txt1);
         name.setText(name.getText() + " " + cityName);
 
-        // get current weather data
+        // get current weather data (today)
         weatherClient.getCurrentCondition(new WeatherRequest(cityId), new WeatherClient.WeatherEventListener() {
             @Override
             public void onWeatherRetrieved(CurrentWeather currentWeather) {
@@ -88,7 +90,7 @@ public class OverviewFragment extends WeatherFragment {
             }
         });
 
-        // get forecast data
+        // get forecast data (6 days in advance)
         weatherClient.getForecastWeather(new WeatherRequest(cityId),
                 new WeatherClient.ForecastWeatherEventListener() {
             @Override
@@ -107,19 +109,20 @@ public class OverviewFragment extends WeatherFragment {
         });
     }
 
-    public interface OnCurrentSelectedListener {
-        public void onCurrentSelected();
+    public interface OnTodaySelectedListener {
+        public void onTodaySelected();
     }
 
+    // Android Studio told me it's deprecated, but the other method didn't work
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
         try {
-            m_callback = (OnCurrentSelectedListener) activity;
+            m_callback = (OnTodaySelectedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnCurrentSelectedListener");
+                    + " must implement OnTodaySelectedListener");
         }
     }
 }

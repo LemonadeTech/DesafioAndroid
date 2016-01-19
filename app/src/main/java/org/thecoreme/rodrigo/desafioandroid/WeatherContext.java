@@ -8,12 +8,12 @@ import com.survivingwithandroid.weather.lib.client.okhttp.WeatherDefaultClient;
 import com.survivingwithandroid.weather.lib.exception.WeatherProviderInstantiationException;
 import com.survivingwithandroid.weather.lib.provider.openweathermap.OpenweathermapProviderType;
 
-
 public class WeatherContext {
     private static WeatherContext m_weatherContext;
     private WeatherClient m_client;
 
-    private WeatherContext() {}
+    private WeatherContext() {
+    }
 
     public static WeatherContext getInstance() {
         if (m_weatherContext == null)
@@ -28,7 +28,8 @@ public class WeatherContext {
 
         try {
             WeatherConfig config = new WeatherConfig();
-            config.ApiKey = "2ffdd0916ecc926d15b723006c99fd42"; // TODO
+            // hardcoded config, including my api key
+            config.ApiKey = "2ffdd0916ecc926d15b723006c99fd42";
             config.maxResult = 5;
             config.numDays = 6;
             config.unitSystem = WeatherConfig.UNIT_SYSTEM.M;
