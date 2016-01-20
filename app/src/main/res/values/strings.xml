@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DesafioAndroid</string>
+    <string name="title_activity_settings">Configure city</string>
+
+    <string name="action_settings">Configure city...</string>
+
+    <string name="pref_City">City</string>
+    <string name="pref_cityName">City name</string>
+
+    <string name="search_text1">Insert the city name</string>
+    <string name="search_text2">Search results</string>
+
+    <string name="overview_current">Current weather in</string>
+    <string name="overview_forecast">Forecast</string>
+</resources>

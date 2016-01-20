@@ -32,3 +32,28 @@ O desafio consiste na construção de um aplicativo  simples para exibição de 
 **Deverá criar um PR deste projeto com a solução apresentada**
 
 **Qualquer duvida entrar em contato através do email dev (at) itslemonade.com**
+
+##Observações sobre o PR:
+* Build disponível [neste link](http://thecoreme.org/shared/DesafioAndroid/app-debug.apk)
+
+* Utilizei a biblioteca [WeatherLib](https://survivingwithandroid.github.io/WeatherLib/), me baseando também no app demo [demo](https://github.com/survivingwithandroid/WeatherLib/tree/master/demo).
+
+  Tal biblioteca prove acesso a diversos provedores, entre eles [Forecast.io](https://forecast.io), [Yahoo! Weather](https://weather.yahoo.com/) e [OpenWeatherMap](http://openweathermap.org/), sendo que que escolhi este último para o app.
+
+* O requisito do teste unitário não foi feito.
+
+* Só é feita a exibição de textos no app, sem nenhuma imagem.
+
+* O app é composto de duas activities, sendo a principal para o overview e detalhamento do dia atual (que são Fragments), e a tela de configurações. Apesar do botão de voltar não estar sendo exibido, ao utilizar a tecla BACK do dispositivo é feita a correta transição entre telas.
+
+* É apenas possível ver o detalhamento do clima do dia atual, ao clicar-se no primeito item da tela
+de overview ("Today").
+
+* A tela de configuração apenas permite a busca e definição da cidade, porém poderia ser
+adicionado configuração do sistema de unidades (métrico/imperial, deixei métrico como padrão),
+número de dias a ser exibido no overview (forecast, padrão = 6) e limite do número de cidades
+resultantes da busca.
+
+* Os resultados da busca e o termo usado para tal não estão sendo guardados quando ocorre algum evento no dispositivo, como rotação de tela, por exemplo.
+
+* Primeira vez utilizando Android Studio, possível que esqueci de fazer o commit de algum arquivo essencial :p

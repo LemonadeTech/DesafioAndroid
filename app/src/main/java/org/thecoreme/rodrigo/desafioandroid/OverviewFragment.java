@@ -1,0 +1,128 @@
+package org.thecoreme.rodrigo.desafioandroid;
+
+import android.view.View;
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView;
+import android.view.LayoutInflater;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.survivingwithandroid.weather.lib.WeatherClient;
+import com.survivingwithandroid.weather.lib.model.CurrentWeather;
+import com.survivingwithandroid.weather.lib.model.WeatherForecast;
+import com.survivingwithandroid.weather.lib.request.WeatherRequest;
+import com.survivingwithandroid.weather.lib.exception.WeatherLibException;
+
+public class OverviewFragment extends WeatherFragment {
+    OnTodaySelectedListener m_callback;
+
+    private ListView m_currentDay;
+    private ListView m_forecastList;
+
+    // tap on today's weather to view a detailed screen
+    private AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+        public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+            m_callback.onTodaySelected();
+        }
+    };
+
+    public static OverviewFragment newInstance() {
+        OverviewFragment fragment = new OverviewFragment();
+
+        return fragment;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View v = inflater.inflate(R.layout.overview_fragment, container, false);
+
+        m_currentDay = (ListView) v.findViewById(R.id.currentDay);
+        m_currentDay.setOnItemClickListener(listener);
+
+        m_forecastList = (ListView) v.findViewById(R.id.forecastDays);
+
+        return v;
+    }
+
+    public void refreshData() {
+        refresh();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        refresh();
+    }
+
+    private void refresh() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String cityId = sharedPref.getString("cityId", null);
+        String cityName = sharedPref.getString("cityName", null);
+
+        TextView name = (TextView) getView().findViewById(R.id.txt1);
+        name.setText(name.getText() + " " + cityName);
+
+        // get current weather data (today)
+        weatherClient.getCurrentCondition(new WeatherRequest(cityId), new WeatherClient.WeatherEventListener() {
+            @Override
+            public void onWeatherRetrieved(CurrentWeather currentWeather) {
+                WeatherAdapter adp = new WeatherAdapter(currentWeather, getActivity());
+                m_currentDay.setAdapter(adp);
+            }
+
+            @Override
+            public void onWeatherError(WeatherLibException e) {
+            }
+
+            @Override
+            public void onConnectionError(Throwable throwable) {
+            }
+        });
+
+        // get forecast data (6 days in advance)
+        weatherClient.getForecastWeather(new WeatherRequest(cityId),
+                new WeatherClient.ForecastWeatherEventListener() {
+            @Override
+            public void onWeatherRetrieved(WeatherForecast forecast) {
+                WeatherAdapter adp = new WeatherAdapter(forecast, getActivity());
+                m_forecastList.setAdapter(adp);
+            }
+
+            @Override
+            public void onWeatherError(WeatherLibException t) {
+            }
+
+            @Override
+            public void onConnectionError(Throwable t) {
+            }
+        });
+    }
+
+    public interface OnTodaySelectedListener {
+        public void onTodaySelected();
+    }
+
+    // Android Studio told me it's deprecated, but the other method didn't work
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            m_callback = (OnTodaySelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnTodaySelectedListener");
+        }
+    }
+}

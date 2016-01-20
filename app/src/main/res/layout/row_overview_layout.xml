@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="15dp">
+
+    <TextView android:id="@+id/dayName"
+    	android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:paddingLeft="3dp" />
+
+    <TextView
+        android:id="@+id/dayDate"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textStyle="italic"
+        android:layout_toRightOf="@id/dayName"
+        android:paddingLeft="3dp" />
+
+    <TextView
+        android:id="@+id/dayDescr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dayName"
+        android:layout_alignStart="@id/dayName"
+        android:paddingLeft="3dp"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/dayTempMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dp"
+        android:textColor="#ff0000" />
+
+    <TextView
+        android:id="@+id/dayTempMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dayTempMax"
+        android:layout_alignParentRight="true"
+        android:paddingRight="5dp"
+        android:textColor="#0000ff" />
+</RelativeLayout>
